@@ -1,25 +1,25 @@
-jest.enableAutomock();
 
-import { CC_PERMISSIONS } from './constants';
+
 import Permissions from './permissions'
 
-describe('The Permissions Class', async () => {
+describe('The Permissions Class', () => {
   beforeAll(() => {
    
   })
   beforeEach(() => {
     //RNPermissions.mockClear();
-  
+    
     
   })
   it('should return check if the camera permission is accepted', async () => {
     // Inputs
-    const inputs = CC_PERMISSIONS.CAMERA;
+
+    const inputs = 'camera';
     const result = await Permissions.check(inputs);
 
     // Outputs
-    const outputs = ''
+    const outputs = {"status": "granted"}
 
-    expect(result).toBe(outputs);
+    expect(result).toStrictEqual(outputs);
   })
 });
