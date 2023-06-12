@@ -26,7 +26,9 @@ class Permissions {
       const status = await checkNotifications();
       return { status }
     } else {
-      const _permission = CC_PERMISSIONS_MAP[permission];
+      const _permission = CC_PERMISSIONS_MAP.get(permission);
+      console.log('permis', _permission)
+      //TODO check if the return is multiple and call correct check
       const status = await check(_permission);
       return { status };
     } 
@@ -43,8 +45,11 @@ class Permissions {
     }
   };
 
-  checkMultiple = (permissions: string) => {
-    return checkMultiple(permissions);
+  checkMultiple = async (permissions: string[]) => {
+    const permissionsToCheck = permissions.map( prm => CC_PERMISSIONS_MAP[prm])
+    console.log(permissionsToCheck)
+    const status = await checkMultiple(permissionsToCheck);
+    return {status}
   }; 
 
   // TODO: determine if we need this.

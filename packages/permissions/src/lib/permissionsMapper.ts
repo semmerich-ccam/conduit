@@ -15,7 +15,41 @@ import { Platform } from "react-native";
 import { CC_PERMISSIONS, PERMISSIONS_IOS, PLATFORM_PERMISSIONS } from "./constants";
 import { PERMISSIONS } from "react-native-permissions";
 
-export const CC_PERMISSIONS_MAP = new Proxy(CC_PERMISSIONS, {
+
+export const CC_PERMISSIONS_MAP = {
+   get: function (prop: string) : string | string[] | Record<string, any> {
+    if (prop.toUpperCase() === 'CAMERA') {
+      const retValue = Platform.select({
+        ios: { CAMERA: PERMISSIONS_IOS.CAMERA, MICROPHONE: PERMISSIONS_IOS.MICROPHONE},
+        android: PERMISSIONS.ANDROID.CAMERA,
+      });
+      console.log('retValue', retValue);
+      return retValue;
+    }
+     if (prop ==='LOCATION') {
+      const retValue =  Platform.select({
+        ios: {
+          LOCATION_ALWAYS: PERMISSIONS_IOS.LOCATION_ALWAYS,
+          LOCATION_WHEN_IN_USE: PERMISSIONS_IOS.LOCATION_WHEN_IN_USE,
+        },
+        android: PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
+      });
+      console.log('retValue', retValue);
+      return retValue;
+    }
+    if (prop === 'NOTIFICATIONS') {
+      return Platform.select({
+        ios: PERMISSIONS_IOS,
+        android: PERMISSIONS.ANDROID.POST_NOTIFICATIONS,
+      });
+    }
+     if(prop in PLATFORM_PERMISSIONS) {
+      return Reflect.get(PLATFORM_PERMISSIONS, prop);
+    }
+  }
+  
+}
+/* export const CC_PERMISSIONS_MAP = new Proxy(CC_PERMISSIONS, {
   get(target, prop, receiver)//: string| string[] | undefined
   {
    
@@ -61,5 +95,5 @@ export const CC_PERMISSIONS_MAP = new Proxy(CC_PERMISSIONS, {
     return true
   },
 
-});
+}); */
 
