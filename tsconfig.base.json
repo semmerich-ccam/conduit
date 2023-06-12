@@ -11,11 +11,13 @@
     "target": "es2015",
     "module": "esnext",
     "lib": ["es2017", "dom"],
+    "types": ["jest"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@cocam/offline-queue": ["packages/offline-queue/src/index.ts"],
+      "@cocam/permissions": ["packages/permissions/src/index.ts"],
       "@companycam/darkly": ["packages/darkly/src/index.ts"]
     }
   },
