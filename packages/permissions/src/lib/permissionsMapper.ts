@@ -26,7 +26,7 @@ export const CC_PERMISSIONS_MAP = {
       console.log('retValue', retValue);
       return retValue;
     }
-     if (prop ==='LOCATION') {
+     if (prop.toUpperCase() ==='LOCATION') {
       const retValue =  Platform.select({
         ios: [
            PERMISSIONS_IOS.LOCATION_ALWAYS,
@@ -37,9 +37,9 @@ export const CC_PERMISSIONS_MAP = {
       console.log('retValue', retValue);
       return retValue;
     }
-    if (prop === 'NOTIFICATIONS') {
+    if (prop.toUpperCase() === 'NOTIFICATIONS') {
       return Platform.select({
-        ios: PERMISSIONS_IOS,
+        ios: PERMISSIONS_IOS, //special cases
         android: PERMISSIONS.ANDROID.POST_NOTIFICATIONS,
       });
     }

@@ -18,7 +18,10 @@ describe('The Permissions Class', () => {
     const result = await Permissions.check(inputs);
 
     // Outputs
-    const outputs = {"status": "granted"}
+    const outputs =  {"status": {
+          "ios.permission.CAMERA": "granted",
+         "ios.permission.MICROPHONE": "granted",
+         }}
 
     expect(result).toStrictEqual(outputs);
   })
@@ -29,7 +32,10 @@ describe('The Permissions Class', () => {
     const result = await Permissions.check(inputs);
 
     // Outputs
-    const outputs = {"status": "granted"}
+    const outputs =  { "status": {
+           "ios.permission.LOCATION_ALWAYS": "granted",
+           "ios.permission.LOCATION_WHEN_IN_USE": "granted",
+         }}
 
     expect(result).toStrictEqual(outputs);
   })

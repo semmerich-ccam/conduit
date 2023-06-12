@@ -21,15 +21,20 @@ class Permissions {
   }; */
  
   check = async (permission: string) => {
+    let status = null
     // Notifications are a special Case
     if (permission === CC_PERMISSIONS.NOTIFICATIONS) {
-      const status = await checkNotifications();
+       status = await checkNotifications();
       return { status }
     } else {
       const _permission = CC_PERMISSIONS_MAP.get(permission);
       console.log('permis', _permission)
       //TODO check if the return is multiple and call correct check
-      const status = await check(_permission);
+      if(_permission?.length && _permission.length > 1) {
+        status = await checkMultiple(_permission)
+      } else {
+       status = await check(_permission);
+      }
       return { status };
     } 
   };
