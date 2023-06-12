@@ -20,7 +20,7 @@ export const CC_PERMISSIONS_MAP = {
    get: function (prop: string) : string | string[] | Record<string, any> {
     if (prop.toUpperCase() === 'CAMERA') {
       const retValue = Platform.select({
-        ios: { CAMERA: PERMISSIONS_IOS.CAMERA, MICROPHONE: PERMISSIONS_IOS.MICROPHONE},
+        ios: [ PERMISSIONS_IOS.CAMERA, PERMISSIONS_IOS.MICROPHONE],
         android: PERMISSIONS.ANDROID.CAMERA,
       });
       console.log('retValue', retValue);
@@ -28,10 +28,10 @@ export const CC_PERMISSIONS_MAP = {
     }
      if (prop ==='LOCATION') {
       const retValue =  Platform.select({
-        ios: {
-          LOCATION_ALWAYS: PERMISSIONS_IOS.LOCATION_ALWAYS,
-          LOCATION_WHEN_IN_USE: PERMISSIONS_IOS.LOCATION_WHEN_IN_USE,
-        },
+        ios: [
+           PERMISSIONS_IOS.LOCATION_ALWAYS,
+          PERMISSIONS_IOS.LOCATION_WHEN_IN_USE,
+        ],
         android: PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
       });
       console.log('retValue', retValue);

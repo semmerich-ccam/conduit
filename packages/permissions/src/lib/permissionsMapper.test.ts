@@ -1,4 +1,4 @@
-jest.enableAutomock();
+//jest.enableAutomock();
 /* jest.mock('react-native-permissions');
 jest.mock('react-native', () => {
   return { Platform: {
@@ -22,22 +22,22 @@ describe('The Permissions Mapper', () => {
   it('should return the proper permissions strings for camera', ()=> {
     // Inputs
     
-    const inputs = CC_PERMISSIONS_MAP['CAMERA'];
+    const inputs = CC_PERMISSIONS_MAP.get('CAMERA');
 
     // Outputs
-    const outputs = 'ios.permission.CAMERA'
+    const outputs = ["ios.permission.CAMERA", "ios.permission.MICROPHONE"]
 
-    expect(inputs).toBe(outputs);
+    expect(inputs).toStrictEqual(outputs);
   })
   it('should return the proper permissions strings for location', ()=> {
     // Inputs
     
-    const inputs = CC_PERMISSIONS_MAP['LOCATION'];
+    const inputs = CC_PERMISSIONS_MAP.get('LOCATION');
 
     // Outputs
-    const outputs = 'ios.permission.LOCATION_ALWAYS'
+    const outputs = ["ios.permission.LOCATION_ALWAYS", "ios.permission.LOCATION_WHEN_IN_USE"]
 
-    expect(inputs).toBe(outputs);
+    expect(inputs).toStrictEqual(outputs);
   })
   
 })
