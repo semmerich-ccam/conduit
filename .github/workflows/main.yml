@@ -8,7 +8,7 @@ jobs:
       contents: read
       pull-requests: write
     # This job only runs for pull request comments, and comments from user 'companycam-machine'
-    if: github.event.issue.pull_request && github.event.sender.login == 'companycam-machine'
+    if: github.event.issue.pull_request && github.event.sender.login == 'semmerich-ccam'
     runs-on: ubuntu-latest
     steps:
       - uses: mondeja/remove-labels-gh-action@v1            
